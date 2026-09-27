@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planner Maker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="controls" aria-label="Controles do planner">
+      <div class="control-group">
+        <label for="monthSelect">Mês</label>
+        <select id="monthSelect"></select>
+      </div>
+
+      <div class="control-group year-group">
+        <label for="yearInput">Ano</label>
+        <input id="yearInput" type="number" min="1" max="9999" inputmode="numeric" />
+      </div>
+
+      <button id="todayBtn" type="button">Mês atual</button>
+      <button id="clearBtn" type="button" class="ghost">Limpar anotações</button>
+      <button id="printBtn" type="button" class="ghost">Imprimir mês</button>
+      <button id="pdfBtn" type="button" class="primary">Baixar PDF do mês</button>
+    </section>
+
+    <section class="bulk-panel" aria-label="Criar planners em massa">
+      <div class="bulk-heading">
+        <div>
+          <span class="eyebrow">PDF em massa</span>
+          <h2>Criar vários meses de uma vez</h2>
+        </div>
+        <p id="rangeSummary" class="range-summary"></p>
+      </div>
+
+      <div class="bulk-controls">
+        <div class="range-block">
+          <span class="range-label">De</span>
+          <div class="control-group compact">
+            <label for="startMonthSelect">Mês</label>
+            <select id="startMonthSelect"></select>
+          </div>
+          <div class="control-group compact year-group">
+            <label for="startYearInput">Ano</label>
+            <input id="startYearInput" type="number" min="1" max="9999" inputmode="numeric" />
+          </div>
+        </div>
+
+        <div class="range-arrow" aria-hidden="true">→</div>
+
+        <div class="range-block">
+          <span class="range-label">Até</span>
+          <div class="control-group compact">
+            <label for="endMonthSelect">Mês</label>
+            <select id="endMonthSelect"></select>
+          </div>
+          <div class="control-group compact year-group">
+            <label for="endYearInput">Ano</label>
+            <input id="endYearInput" type="number" min="1" max="9999" inputmode="numeric" />
+          </div>
+        </div>
+
+        <button id="bulkPdfBtn" type="button" class="primary bulk-button">Baixar PDF em massa</button>
+      </div>
+
+      <p class="bulk-help">Ex.: Novembro/2026 → Agosto/2027 gera <strong>um único PDF com 10 páginas</strong>, uma página A4 horizontal para cada mês.</p>
+    </section>
+
+    <section id="planner" class="planner" aria-label="Planner mensal">
+      <header class="planner-top">
+        <h1>Planner Mensal</h1>
+        <div class="month-year-box">
+          <span>Mês/Ano:</span>
+          <strong id="monthYearLabel"></strong>
+        </div>
+      </header>
+
+      <div class="week-header" aria-hidden="true">
+        <div>Segunda</div>
+        <div>Terça</div>
+        <div>Quarta</div>
+        <div>Quinta</div>
+        <div>Sexta</div>
+        <div>Sábado</div>
+        <div>Domingo</div>
+      </div>
+
+      <div id="calendarGrid" class="calendar-grid"></div>
+    </section>
+
+    <p class="hint">Clique dentro de qualquer dia para escrever. As anotações ficam salvas neste navegador e também entram no PDF.</p>
+  </main>
+
+  <script src="pdf-generator.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
